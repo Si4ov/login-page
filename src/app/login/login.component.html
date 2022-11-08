@@ -1,0 +1,37 @@
+<div class="alert" *ngIf="error">{{ error }}</div>
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <label class="label" for="email">Email:</label>
+  <input
+    class="input"
+    type="email"
+    name="email"
+    id="email"
+    placeholder="write your email..."
+    autocomplete="new-email"
+    ngModel
+    required
+    pattern=".+@+.+."
+  />
+  <br />
+  <label class="label" for="password">Password:</label>
+  <input
+    class="input"
+    type="password"
+    name="password"
+    id="password"
+    placeholder="write your password..."
+    autocomplete="new-password"
+    ngModel
+    required
+    minlength="6"
+  />
+  <br />
+  <div class="btn">
+    <button class="btn-action" type="submit" [disabled]="!form.valid">
+      {{ isLoginMode ? "Login" : "Sign Up" }}
+    </button>
+    <button class="btn-switch" (click)="onSwitchMode()" type="button">
+      Switch to {{ isLoginMode ? "Sign Up" : "Login" }}
+    </button>
+  </div>
+</form>
